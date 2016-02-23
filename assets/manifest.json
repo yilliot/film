@@ -1,0 +1,11 @@
+{
+  "name": "Film",
+  "description": "Present text with backdrop video",
+  "manifest_version": 2,
+  "version": "0.1",
+  "app": {
+    "background": {
+      "scripts": ["scripts/background.js"]
+    }
+  }
+}
