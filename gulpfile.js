@@ -6,8 +6,12 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var sass = require('gulp-sass');
 
+gulp.task('default', ['static', 'scripts', 'styles']);
 
 gulp.task('static', function() {
+
+  gulp.src('node_modules/semantic-ui/dist/themes/**/*').pipe(gulp.dest('dist/styles/themes'));
+
   gulp.src('assets/manifest.json').pipe(gulp.dest('dist'));
   gulp.src('assets/html/*').pipe(gulp.dest('dist/html'));
 });
@@ -22,7 +26,11 @@ gulp.task('scripts', function() {
   ]).pipe(gulp.dest('dist/scripts'));
 
 // dependancies
-  gulp.src('node_modules/jquery/dist/jquery.js')
+  gulp.src([
+      'node_modules/jquery/dist/jquery.js',
+      'node_modules/semantic-ui/dist/semantic.js',
+      'node_modules/vue/dist/vue.js'
+    ])
     .pipe(concat('dependancies.js'))
     .pipe(gulp.dest('dist/scripts'));
 
@@ -44,7 +52,11 @@ gulp.task('scripts', function() {
 
 gulp.task('styles', function(){
 
-  return gulp.src('assets/styles/*')
+  return gulp.src([
+      'assets/styles/*',
+      'node_modules/semantic-ui/dist/semantic.css',
+      'node_modules/semantic-ui/dist/components/reset.css'
+    ])
     .pipe(sass())
     .pipe(gulp.dest('dist/styles'));
 });

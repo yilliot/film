@@ -1,6 +1,7 @@
 {
   "name": "Film",
   "description": "Present text with backdrop video",
+  "permissions": ["system.cpu", "system.memory", "system.storage", "system.display"],
   "manifest_version": 2,
   "version": "0.1",
   "app": {

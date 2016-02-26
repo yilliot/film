@@ -2,25 +2,97 @@
 
 <head>
 
-    <title>Control Window</title>
+  <title>Control Window</title>
 
-    <script src="/scripts/dependancies.js"></script>
-    <script src="/scripts/control.js"></script>
+  <script src="/scripts/dependancies.js"></script>
+  <script src="/scripts/control.js"></script>
+  <!-- <link rel="stylesheet" href="/styles/reset.css"> -->
+  <link rel="stylesheet" href="/styles/semantic.css">
 
 </head>
 
 <body>
 
-    <div id="content">
+<div class="ui fluid container">
 
-        <div id="inner-content">
+  <div class="ui grid">
+    <div class="two wide column">
+      <button class="ui secondary icon btn">
+        <i class="caret left icon"></i>
+      </button>
+    </div>
+    <div class="twelve wide column">
 
-            Type in text:<br/>
-            <input type="text" id="textbox">
-
+      <!-- Status Light -->
+      <div class="ui ordered fluid steps">
+        <div class="completed step">
+          <div class="content">
+            <div class="title">Layout</div>
+            <div class="description">Make your track list with Library</div>
+          </div>
         </div>
+        <div class="completed step">
+          <div class="content">
+            <div class="title">Review</div>
+            <div class="description">Adjustment for this service</div>
+          </div>
+        </div>
+        <div class="active step">
+          <div class="content">
+            <div class="title">Film</div>
+            <div class="description">Show Time</div>
+          </div>
+        </div>
+      </div>
+      <!-- Status Light End -->
 
     </div>
+    <div class="two wide column">
+      <button class="ui btn primary">
+        <i class="caret right icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <div>  
+    <select id="present-display-list">
+    </select>
+    <button id='present-button'> Show </button>
+    <button id='hide-button'> Hide </button>
+  </div>
+
+
+</div>
+
+<!-- State 1 : Layout -->
+<div class="ui fluid container">
+  <div class="ui grid">
+
+    <!-- Library -->    
+    <div class="ten wide column">
+    
+    </div>
+    <!-- Library End -->
+
+    <!-- Track List -->
+    <div class="six wide column">
+      
+    </div>
+    <!-- Track List End -->
+  </div>
+</div>
+<!-- State 1 : Layout End -->
+
+
+
+
+  <div id="content">
+    <div id="inner-content">
+      Type in text:<br/>
+      <input type="text" id="textbox">
+    </div>
+  </div>
+
 
 </body>
 

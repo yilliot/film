@@ -1,36 +1,38 @@
-var presentwin, controlwin;
+var controlwin;
 
 function broadcast(text){
-  presentwin.contentWindow.post(text);
+  PresentWindow.windowObj.contentWindow.post(text);
 }
+
+var PresentWindow = {
+  windowObj : {},
+  init : function() {},
+  show : function(bounds) {
+    PresentWindow.windowObj.contentWindow.Broadcast.show(bounds);
+  },
+  hide : function() {
+    PresentWindow.windowObj.contentWindow.Broadcast.hide();
+  }
+}
+
 chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create("html/present.html",
-    {  frame: "none",
-       id: "presentwin",
-       innerBounds: {
-         width: 360,
-         height: 300,
-         left: 600,
-         minWidth: 220,
-         minHeight: 220
-      }
+    { 
+      id: "presentwin",
+      frame: "none",
+      hidden: true,
     }, function(win) {
-      presentwin = win;
+      PresentWindow.windowObj = win;
     }
   );
   chrome.app.window.create("html/control.html",
-    {  frame: "none",
-       id: "controlwin",
-       innerBounds: {
-         width: 360,
-         height: 300,
-         left: 200,
-         minWidth: 220,
-         minHeight: 220
-      }
+    {
+      id: "controlwin",
+      state : 'maximized'
     }, function(win) {
       controlwin = win;
     }
   );
 
 });
+
