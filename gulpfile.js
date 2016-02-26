@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var browserify = require('browserify');
+var stringify = require('stringify');
 var source = require('vinyl-source-stream');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
@@ -29,11 +30,21 @@ gulp.task('scripts', function() {
 
 // single
   gulp.src([
-    'assets/scripts/app.js',
-    'assets/scripts/control.js',
     'assets/scripts/present.js',
     'assets/scripts/background.js'
   ]).pipe(gulp.dest('dist/scripts'));
+
+// browserify
+  browserify('assets/scripts/control.js', {
+      paths : ['./assets/scripts/components']
+    })
+    .transform(stringify({
+        extensions: ['.html'], minify: true
+    }))
+    .bundle()
+    .pipe(source('control.js'))
+    .pipe(gulp.dest('dist/scripts'));
+
 
 // dependancies
   gulp.src([
@@ -56,14 +67,4 @@ gulp.task('styles', function(){
     ])
     .pipe(sass())
     .pipe(gulp.dest('dist/styles'));
-});
-
-
-gulp.task('browserify', function(){
-
-  return browserify('assets/scripts/app.js')
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('dist/scripts'));
-
 });

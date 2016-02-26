@@ -5,33 +5,20 @@ var Myvue = {
     new Vue({
       el : '#myvue',
 
-      computed : {
-        hide_for_layout : function() {
-          return this.state == 'layout' ? '' : 'hide';
-        },
-        hide_for_review : function() {
-          return this.state == 'review' ? '' : 'hide';
-        },
-        hide_for_show : function() {
-          return this.state == 'show' ? '' : 'hide';
-        },
-        hide_for_song : function() {
-          return this.state == 'song' ? '' : 'hide';
-        }
-      },
-
       data : {
+        song_list : [1,2,3],
         state : 'layout' // review, show, song
       },
 
       methods : {},
 
-      components : {},
+      components : {
+        'song-list-item' : require('song-list-item/song-list-item')
+      },
 
       events : {},
 
       ready : function() {
-        console.log(this.hide_for_layout);
       }
     });
   }
