@@ -5,8 +5,17 @@ var concat = require('gulp-concat');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var sass = require('gulp-sass');
+var watch = require('gulp-watch');
 
 gulp.task('default', ['static', 'scripts', 'styles']);
+
+gulp.task('watch', function(cb) {
+
+  watch('assets/**/*', function(){
+    gulp.start('default').on('end', cb);
+  });
+
+});
 
 gulp.task('static', function() {
 
@@ -20,6 +29,7 @@ gulp.task('scripts', function() {
 
 // single
   gulp.src([
+    'assets/scripts/app.js',
     'assets/scripts/control.js',
     'assets/scripts/present.js',
     'assets/scripts/background.js'
@@ -33,19 +43,6 @@ gulp.task('scripts', function() {
     ])
     .pipe(concat('dependancies.js'))
     .pipe(gulp.dest('dist/scripts'));
-
-  // gulp.src([
-  //   'node_modules/vue/dist/vue.js',
-  // ])
-  // .pipe(concat('dependancies.js'))
-  // .pipe(gulp.dest('dist/scripts'));
-
-  // gulp.src([
-  //   'assets/scripts/*',
-  // ])
-  // .pipe(concat('app.js'))
-  // .pipe(gulp.dest('dist/scripts'));
-
 
 });
 

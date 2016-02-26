@@ -3,80 +3,114 @@
 <head>
 
   <title>Control Window</title>
-
-  <script src="/scripts/dependancies.js"></script>
-  <script src="/scripts/control.js"></script>
-  <!-- <link rel="stylesheet" href="/styles/reset.css"> -->
+  <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/semantic.css">
 
 </head>
 
-<body>
+<body id='myvue'>
 
-<div class="ui fluid container">
+<div class="ui hidden divider"></div>
 
-  <div class="ui grid">
-    <div class="two wide column">
-      <button class="ui secondary icon btn">
-        <i class="caret left icon"></i>
-      </button>
-    </div>
-    <div class="twelve wide column">
-
-      <!-- Status Light -->
-      <div class="ui ordered fluid steps">
-        <div class="completed step">
-          <div class="content">
-            <div class="title">Layout</div>
-            <div class="description">Make your track list with Library</div>
-          </div>
-        </div>
-        <div class="completed step">
-          <div class="content">
-            <div class="title">Review</div>
-            <div class="description">Adjustment for this service</div>
-          </div>
-        </div>
-        <div class="active step">
-          <div class="content">
-            <div class="title">Film</div>
-            <div class="description">Show Time</div>
-          </div>
-        </div>
+<!-- Status Light -->
+<div class="ui container">
+  <div class="ui ordered fluid steps">
+    <div class="active step">
+      <div class="content">
+        <div class="title">Layout</div>
+        <div class="description">Make your track list with Library</div>
       </div>
-      <!-- Status Light End -->
-
     </div>
-    <div class="two wide column">
-      <button class="ui btn primary">
-        <i class="caret right icon"></i>
-      </button>
+
+    <div class="step">
+      <div id='hide-button' class="content">
+        <div class="title">Review</div>
+        <div class="description">Adjustment for this service</div>
+      </div>
+    </div>
+    <div id='present-button' class="step">
+      <div class="content">
+        <div class="title">Film</div>
+        <div class="description">Show Time</div>
+      </div>
     </div>
   </div>
-
-  <div>  
-    <select id="present-display-list">
-    </select>
-    <button id='present-button'> Show </button>
-    <button id='hide-button'> Hide </button>
-  </div>
-
-
 </div>
+<!-- Status Light End -->
+
+<div class="ui divider"></div>
+
+{{hide_for_layout}}
 
 <!-- State 1 : Layout -->
-<div class="ui fluid container">
+<div class="ui container" >
   <div class="ui grid">
 
     <!-- Library -->    
     <div class="ten wide column">
-    
+
+      <h3>Layout Arranger</h3>
+
+      <div class="ui top attached tabular menu">
+        <a class="active item" data-tab="first">Songs Library</a>
+        <a class="item" data-tab="second">Slides</a>
+      </div>
+      <div class="ui bottom attached active tab segment" data-tab="first">
+
+        <button class="ui right floated labeled icon button">
+          <i class="plus icon"></i>
+          New Song
+        </button>
+
+        <table class="ui very basic table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Preview</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Amazing Grace</td>
+              <td>Lyrics</td>
+              <td>
+                <i class="unhide icon"></i>
+                <i class="pencil icon"></i>
+                <i class="share icon"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="second">
+        feature coming soon~
+      </div>
+
     </div>
     <!-- Library End -->
 
     <!-- Track List -->
     <div class="six wide column">
-      
+      <h3> Service Tracks List </h3>
+      <table class="ui very basic table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amazing Grace</td>
+            <td>
+              <i class="caret down icon"></i>
+              <i class="caret up icon"></i>
+              <i class="trash icon"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <!-- Track List End -->
   </div>
@@ -85,13 +119,201 @@
 
 
 
+<!-- State 2 : REVIEW -->
+<div class="ui container">
 
-  <div id="content">
-    <div id="inner-content">
-      Type in text:<br/>
-      <input type="text" id="textbox">
+  <div class="ui grid">
+
+    <!-- Item List -->    
+    <div class="twelve wide column">
+  
+      <h3>Review &amp; Adjustment</h3>
+
+      <!-- Song -->
+      <div>
+        
+        <div class="ui blue segment">
+          Amazing Grace
+        </div>
+
+        <div class="ui five cards">
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="red card">
+            <div class="content">
+              <div class="header">Lyrics</div>
+              <div class="meta">video1</div>
+              <div class="description">
+                verse 1 : [1]
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="left floated">
+                <i class="caret left icon"></i>
+                <i class="caret right icon"></i>
+              </span>
+              <span class="right floated">
+                <i class="pencil icon"></i>
+                <i class="copy icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- Song end -->
+
+      </div>
+    
     </div>
+    <!-- Library End -->
+
+    <!-- Track List -->
+    <div class="four wide column">
+      <div class="ui segment">
+        Show on :
+        <select class="ui dropdown" id="present-display-list">
+        </select>
+      </div>
+      <h3>Tracks List </h3>
+      <table class="ui very basic table">
+        <thead>
+          <tr>
+            <th>Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amazing Grace</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Track List End -->
   </div>
+</div>
+<!-- State 2 : REVIEW End -->
+
+
+  <script src="/scripts/dependancies.js"></script>
+  <script src="/scripts/control.js"></script>
 
 
 </body>
