@@ -5,6 +5,9 @@
   <title>Control Window</title>
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/semantic.css">
+  <link rel="stylesheet" href="/styles/control.css">
+  <script src="/scripts/dependancies.js"></script>
+  <script src="/scripts/control.js"></script>
 
 </head>
 
@@ -15,20 +18,28 @@
 <!-- Status Light -->
 <div class="ui container">
   <div class="ui ordered fluid steps">
-    <div class="active step">
+    <div id='layout_btn' class="step"
+      :class="{'active': state =='layout'}"
+      @click="state='layout'"
+    >
       <div class="content">
         <div class="title">Layout</div>
         <div class="description">Make your track list with Library</div>
       </div>
     </div>
 
-    <div class="step">
+    <div id='review_btn' class="step"
+      :class="{'active': state =='review'}"
+      @click="state='review'"
+    >
       <div id='hide-button' class="content">
         <div class="title">Review</div>
         <div class="description">Adjustment for this service</div>
       </div>
     </div>
-    <div id='present-button' class="step">
+    <div id='show_btn' class="step"
+      :class="{'active': state =='show'}"
+    >
       <div class="content">
         <div class="title">Film</div>
         <div class="description">Show Time</div>
@@ -40,10 +51,8 @@
 
 <div class="ui divider"></div>
 
-{{hide_for_layout}}
-
 <!-- State 1 : Layout -->
-<div class="ui container" >
+<div class="ui container" v-show="state=='layout'">
   <div class="ui grid">
 
     <!-- Library -->    
@@ -120,7 +129,7 @@
 
 
 <!-- State 2 : REVIEW -->
-<div class="ui container">
+<div class="ui container" v-show="state=='review'">
 
   <div class="ui grid">
 
@@ -310,10 +319,6 @@
   </div>
 </div>
 <!-- State 2 : REVIEW End -->
-
-
-  <script src="/scripts/dependancies.js"></script>
-  <script src="/scripts/control.js"></script>
 
 
 </body>

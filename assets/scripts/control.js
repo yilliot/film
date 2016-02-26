@@ -6,19 +6,21 @@ var Myvue = {
       el : '#myvue',
 
       computed : {
+        hide_for_layout : function() {
+          return this.state == 'layout' ? '' : 'hide';
+        },
         hide_for_review : function() {
-          return this.state !== 'review';
+          return this.state == 'review' ? '' : 'hide';
         },
         hide_for_show : function() {
-          return this.state !== 'show';
+          return this.state == 'show' ? '' : 'hide';
         },
         hide_for_song : function() {
-          return this.state !== 'song';
+          return this.state == 'song' ? '' : 'hide';
         }
       },
 
       data : {
-        'hide_for_layout' : 'hide',
         state : 'layout' // review, show, song
       },
 
@@ -111,7 +113,7 @@ $(function(){
   Main.initEvent();
 
   // app.js
-  // Myvue.init();
+  Myvue.init();
 
 
   Main.semantic();
