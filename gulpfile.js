@@ -36,7 +36,10 @@ gulp.task('scripts', function() {
 
 // browserify
   browserify('assets/scripts/control.js', {
-      paths : ['./assets/scripts/components']
+      paths : [
+        './assets/scripts/components',
+        './assets/databases'
+      ]
     })
     .transform(stringify({
         extensions: ['.html'], minify: true
