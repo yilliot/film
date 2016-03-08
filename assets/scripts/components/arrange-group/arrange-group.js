@@ -8,6 +8,12 @@ module.exports = {
     'arrange-slide' : require('arrange-slide/arrange-slide')
   },
 
+  methods : {
+    getSlideDetails : function(slide, resolve) {
+      this.$parent.getSlideDetails(slide, resolve);
+    }
+  },
+
   ready : function () {
   }
 };

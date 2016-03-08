@@ -1,25 +1,33 @@
 <html>
 
 <head>
+  <meta charset='utf-8'>
 
-    <title>Present Window</title>
+  <title>Present Window</title>
 
-    <script src="/scripts/dependancies.js"></script>
-    <script src="/scripts/present.js"></script>
-    <link rel="stylesheet" href="/styles/semantic.css">
-    <link rel="stylesheet" href="/styles/present.css">
+  <script src="/scripts/dependancies.js"></script>
+  <script src="/scripts/present.js"></script>
+  <link rel="stylesheet" href="/styles/semantic.css">
+  <link rel="stylesheet" href="/styles/present.css">
 
 </head>
 
 <body>
 
+  <div id="content">
 
-    <div id="content">
+    <video
+      id='backdrop'
+      src="/store/loops/default002.mp4"
+      autoplay="autoplay"
+      loop="loop"
+      muted="muted"></video>
 
-        <video id='backdrop' src="/store/loops/polygon.mp4" autoplay="autoplay" loop="loop" muted="muted"></video>
-
-        <div id='text'>Sample text</div>
-    </div>
+    <div 
+      id='content001'
+      speed='200'
+      class="default001">.______________.</div>
+  </div>
 
 </body>
 

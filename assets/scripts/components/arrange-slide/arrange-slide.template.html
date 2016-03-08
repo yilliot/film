@@ -1,7 +1,9 @@
-<div class="red card">
-<div class="content" :click='scream'>
+<div class="red card"
+  :class="{'active': is_current_slide }"
+>
+<div class="content" v-on:click='scream()'>
   <div class="header">{{slide.order}}</div>
-  <div class="meta">video1</div>
+  <div class="meta">{{backdrop.path}} | {{template.title}}</div>
   <div class="description">
     {{slide.content1}}
   </div>

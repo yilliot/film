@@ -19,10 +19,9 @@ window.Myvue = {
         db_templates : [],
         db_songs : [],
         db_backdrops : [],
-        state : 'layout' // review, show, song
+        current_slide_id : 2,
+        state : 'review' // layout, review, show, song
       },
-
-      methods : {},
 
       components : {
         'song-list-item' : require('song-list-item/song-list-item'),
@@ -51,6 +50,40 @@ window.Myvue = {
       },
 
       methods : {
+
+        // click event
+        go_show : function () {
+          this.state = 'show';
+          window.Displays.show();
+        },
+        go_review : function () {
+          this.state = 'review';
+          window.Displays.stop();
+        },
+        go_layout : function () {
+          this.state = 'layout';
+          window.Displays.stop();
+        },
+
+        // child event
+        getSlideDetails : function(slide, resolve) {
+          window.DB.db.templates.where(':id').equals(slide.template_id)
+            .first()
+            .then(function(item){
+              resolve({
+                'template' : item
+              });              
+            });
+          window.DB.db.backdrops.where(':id').equals(slide.backdrop_id)
+            .first()
+            .then(function(item){
+              resolve({
+                'backdrop' : item
+              });              
+            });
+
+        },
+
         getTrackTitle: function(track, resolve) {
           window.DB.db.songs.where(':id').equals(track.song_id)
             .first()
@@ -64,11 +97,6 @@ window.Myvue = {
         getArranges: function(track, _resolve) {
 
           var db = window.DB.db;
-
-          var p_arrange = db.arranges.where(':id').equals(track.song_id).first();
-          var p_arrange_groups = 
-          Promise.all([]);
-
 
           // get arranges
           db.arranges.where(':id').equals(track.song_id)
@@ -102,13 +130,6 @@ window.Myvue = {
             }).then(function(lyrics){
               _resolve({groups:lyrics});
             });
-            // .then(function(arrange_groups){
-            //   console.log('what is this?');
-            //   console.log(arrange_groups);
-            //   _resolve({
-            //     arrange_groups : arrange_groups
-            //   });
-            // });
         }
       }
     });
@@ -183,7 +204,9 @@ window.DB = {
       require('seeds/lyrics'),
       require('seeds/tracks'),
       require('seeds/arranges'),
-      require('seeds/arrange_groups')
+      require('seeds/arrange_groups'),
+      require('seeds/templates'),
+      require('seeds/backdrops')
     ];
 
     for(var i in seeds) {
@@ -199,9 +222,18 @@ window.DB = {
   }
 }
 
-var Displays = {
+window.Displays = {
 
   objList : [],
+
+  show : function () {
+    var targetedDisplay = Displays.objList[$('#present-display-list').val()];
+    Main.backgroundPage.PresentWindow.show(targetedDisplay.bounds);
+  },
+
+  stop : function () {
+    Main.backgroundPage.PresentWindow.hide();
+  },
 
   updateList : function () {
 
@@ -231,35 +263,21 @@ var Displays = {
 
 };
 
-var Main = {
+window.Main = {
 
   backgroundPage : {},
 
   init : function() {
     chrome.runtime.getBackgroundPage(function(page){
-      Main.backgroundPage = page;
+      window.Main.backgroundPage = page;
     });
   },
 
   initEvent : function () {
 
     chrome.system.display.onDisplayChanged.addListener(Displays.updateList);
-    Displays.updateList();
+    window.Displays.updateList();
 
-    $('#present-button').click(function(){
-
-      var targetedDisplay = Displays.objList[$('#present-display-list').val()];
-      Main.backgroundPage.PresentWindow.show(targetedDisplay.bounds);
-    })
-
-    $('#hide-button').click(function(){
-
-      Main.backgroundPage.PresentWindow.hide();
-    })
-
-    $('#textbox').blur(function(){
-      Main.backgroundPage.broadcast($('#textbox').val());
-    });
   },
 
   semantic : function() {

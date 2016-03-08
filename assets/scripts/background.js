@@ -1,17 +1,19 @@
 var controlwin;
 
-function broadcast(text){
-  PresentWindow.windowObj.contentWindow.post(text);
-}
-
 var PresentWindow = {
-  windowObj : {},
+  contentWindow : {},
   init : function() {},
+  setContent : function(text, index) {
+    this.contentWindow.Broadcast.setContent(text, index);
+  },
+  setBackdrop : function(backdrop) {
+    this.contentWindow.Broadcast.setBackdrop(backdrop);
+  },
   show : function(bounds) {
-    PresentWindow.windowObj.contentWindow.Broadcast.show(bounds);
+    this.contentWindow.Broadcast.show(bounds);
   },
   hide : function() {
-    PresentWindow.windowObj.contentWindow.Broadcast.hide();
+    this.contentWindow.Broadcast.hide();
   }
 }
 
@@ -22,7 +24,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
       frame: "none",
       hidden: true,
     }, function(win) {
-      PresentWindow.windowObj = win;
+      PresentWindow.contentWindow = win.contentWindow;
     }
   );
   chrome.app.window.create("html/control.html",

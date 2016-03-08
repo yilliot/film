@@ -22,7 +22,9 @@ module.exports = {
   },
 
   methods : {
-
+    getSlideDetails : function(slide, resolve) {
+      this.$parent.getSlideDetails(slide, resolve);
+    }
   },
 
   ready : function() {

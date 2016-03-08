@@ -20,7 +20,7 @@
   <div class="ui ordered fluid steps">
     <div id='layout_btn' class="step"
       :class="{'active': state =='layout'}"
-      @click="state='layout'"
+      @click="go_layout()"
     >
       <div class="content">
         <div class="title">Layout</div>
@@ -30,7 +30,7 @@
 
     <div id='review_btn' class="step"
       :class="{'active': state =='review'}"
-      @click="state='review'"
+      @click="go_review()"
     >
       <div id='hide-button' class="content">
         <div class="title">Review</div>
@@ -39,6 +39,7 @@
     </div>
     <div id='show_btn' class="step"
       :class="{'active': state =='show'}"
+      @click="go_show()"
     >
       <div class="content">
         <div class="title">Film</div>
@@ -167,6 +168,32 @@
   </div>
 </div>
 <!-- State 2 : REVIEW End -->
+
+
+
+<!-- State 3 : SHOW -->
+<div class="ui container" v-show="state=='show'">
+
+  <div class="ui grid">
+
+    <!-- Item List -->    
+    <div class="sixteen wide column">
+  
+      <h3>Show</h3>
+
+      <template v-for='track in db_tracks'>
+        <arrange-track
+          :track='track'
+        ></arrange-track>
+      </template>
+
+    
+    </div>
+    <!-- Item End -->
+
+  </div>
+</div>
+<!-- State 3 : SHOW End -->
 
 
 </body>
