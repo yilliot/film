@@ -53,7 +53,9 @@ gulp.task('scripts', function() {
   gulp.src([
       'node_modules/jquery/dist/jquery.js',
       'node_modules/semantic-ui/dist/semantic.js',
-      'node_modules/vue/dist/vue.js'
+      'node_modules/dexie/dist/dexie.js',
+      'node_modules/vue/dist/vue.js',
+      'node_modules/vue-async-data/vue-async-data.js'
     ])
     .pipe(concat('dependancies.js'))
     .pipe(gulp.dest('dist/scripts'));

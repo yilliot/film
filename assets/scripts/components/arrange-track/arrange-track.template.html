@@ -1,0 +1,18 @@
+<div>
+  
+  <div class="ui blue segment">
+    {{title}}
+  </div>
+
+
+  <template v-for='group in groups'>
+    <div class="ui five cards">
+      <arrange-group
+        :group='group'
+      ></arrange-group>
+    </div>
+  </template>
+
+</div>
+
+<div class="ui hidden divider"></div>

@@ -1,24 +1,115 @@
-var Myvue = {
+window.Myvue = {
+  vueObj : null,
+
   init : function() {
     Vue.config.debug = true;
+    Vue.use(VueAsyncData);
 
-    new Vue({
+    this.vueObj = new Vue({
       el : '#myvue',
 
       data : {
         song_list : [1,2,3],
+        db_lyrics : [],
+        db_tracks : [],
+        db_arrange_groups : [],
+        db_arranges : [],
+        db_placeholders : [],
+        db_lyric_groups : [],
+        db_templates : [],
+        db_songs : [],
+        db_backdrops : [],
         state : 'layout' // review, show, song
       },
 
       methods : {},
 
       components : {
-        'song-list-item' : require('song-list-item/song-list-item')
+        'song-list-item' : require('song-list-item/song-list-item'),
+        'arrange-track' : require('arrange-track/arrange-track')
       },
 
       events : {},
 
       ready : function() {
+        var vue = this;
+
+        var getCb = function(name, item){
+          Myvue.vueObj.$set(name, item);
+          // console.log(name);
+          // console.log(item);
+        };
+        window.DB.getAllItems('db_lyrics', getCb);
+        window.DB.getAllItems('db_tracks', getCb);
+        window.DB.getAllItems('db_arrange_groups', getCb);
+        window.DB.getAllItems('db_arranges', getCb);
+        window.DB.getAllItems('db_placeholders', getCb);
+        window.DB.getAllItems('db_lyric_groups', getCb);
+        window.DB.getAllItems('db_songs', getCb);
+        window.DB.getAllItems('db_templates', getCb);
+        window.DB.getAllItems('db_backdrops', getCb);
+      },
+
+      methods : {
+        getTrackTitle: function(track, resolve) {
+          window.DB.db.songs.where(':id').equals(track.song_id)
+            .first()
+            .then(function(item){
+              resolve({
+                'title' : item.title
+              });              
+            });
+        },
+
+        getArranges: function(track, _resolve) {
+
+          var db = window.DB.db;
+
+          var p_arrange = db.arranges.where(':id').equals(track.song_id).first();
+          var p_arrange_groups = 
+          Promise.all([]);
+
+
+          // get arranges
+          db.arranges.where(':id').equals(track.song_id)
+            .first()
+            .then(function(arrange){
+              // get groups
+              var arrange_groups = db.arrange_groups.where('arrange_id').equals(arrange.id)
+                .toArray();
+
+              return arrange_groups;
+            }).then(function(arrange_groups){
+
+              _resolve({
+                arrange_groups : arrange_groups
+              });
+              var fn = function(item){
+                return db.lyric_groups.where(':id').equals(item.lyric_group_id).first();
+              };
+              var actions = arrange_groups.map(fn);
+              return Promise.all(actions)
+
+            }).then(function(lyric_groups){
+
+              var fn = function(item) {
+                return db.lyrics.where('lyric_group_id').equals(item.id).toArray();
+              }
+              var actions = lyric_groups.map(fn);
+
+              return Promise.all(actions)
+
+            }).then(function(lyrics){
+              _resolve({groups:lyrics});
+            });
+            // .then(function(arrange_groups){
+            //   console.log('what is this?');
+            //   console.log(arrange_groups);
+            //   _resolve({
+            //     arrange_groups : arrange_groups
+            //   });
+            // });
+        }
       }
     });
   }
@@ -27,48 +118,59 @@ var Myvue = {
 window.DB = {
 
   db : {},
-  request : {},
 
-  init : function () {
+  init : function (callback) {
     const DB_NAME = 'FILM';
-    const DB_VERSION = 2;
 
-    // In the following line, you should include the prefixes of implementations you want to test.
-    window.indexedDB = window.indexedDB || window.webkitIndexedDB;
-    // DON'T use "var indexedDB = ..." if you're not in a function.
-    // Moreover, you may need references to some window.IDB* objects:
-    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction || {READ_WRITE: "readwrite"}; // This line should only be needed if it is needed to support the object's constants for older browsers
-    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
-    // (Mozilla has never prefixed these objects, so we don't need window.mozIDB*)
-
-    this.request = window.indexedDB.open(DB_NAME, DB_VERSION);
-    this.migrate();
+    this.db = new Dexie(DB_NAME);
+    this.migrate(callback);
 
   },
 
-  migrate : function () {
+  getItem : function (name, key, callback) {
+    var storeName = name.replace('db_', '');
+    var trans = this.db.transaction(storeName, IDBTransaction.READ_ONLY);
+    var store = trans.objectStore(storeName);
+    var request = store.get(key);
 
-    this.request.onerror = function(event) {
-      // Do something with request.errorCode!
-      console.error("openDb:", event.target.errorCode);
+    request.onerror = function(event) {
+      console.error(event);
     };
-    this.request.onsuccess = function(event) {
-      // Do something with request.result!
-      DB.db = event.target.result;
-      console.log("openDb DONE");
+    request.onsuccess = function(event) {
+      callback(event.target.result);
     };
+
+  },
+
+  getAllItems : function (name, callback) {
+
+    var storeName = name.replace('db_', '');
+    var items = {};
+    this.db[storeName].toArray().then(function(items){
+      callback(name, items);
+    });
+  },
+
+  migrate : function (callback) {
+
+    const DB_VERSION = 2;
 
     var migs = [
       require('migrations/001')
     ];
 
+    var stores = {};
 
-    this.request.onupgradeneeded = function(event) {
-      console.log("openDb.onupgradeneeded");
-      for(var i in migs) {
-        migs[i].migrate(event.target.result);
+    for(var i in migs) {
+      var mig = migs[i].mig;
+      for(var j in mig) {
+        stores[j] = mig[j];
       }
-    };
+    }
+
+    this.db.version(DB_VERSION).stores(stores);
+    this.db.open().then(callback);
+
   },
 
   seed : function () {
@@ -78,17 +180,20 @@ window.DB = {
     var seeds = [
       require('seeds/songs'),
       require('seeds/lyric_groups'),
-      require('seeds/lyrics')
+      require('seeds/lyrics'),
+      require('seeds/tracks'),
+      require('seeds/arranges'),
+      require('seeds/arrange_groups')
     ];
 
     for(var i in seeds) {
 
-      var seed = seeds[i]
-      var store = db.transaction(seed.store, "readwrite").objectStore(seed.store);
+      var seed = seeds[i];
+      var store = db[seed.store];
       store.clear();
 
       for(var j in seed.data) {
-        store.add(seed.data[j]);
+        store.put(seed.data[j]);
       }
     }
   }
@@ -169,10 +274,9 @@ $(function(){
   Main.init();
   Main.initEvent();
 
-  DB.init();
-
-  // app.js
-  Myvue.init();
+  DB.init(function(){
+    Myvue.init();
+  });
 
 
   Main.semantic();

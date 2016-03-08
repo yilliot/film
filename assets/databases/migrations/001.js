@@ -1,5 +1,17 @@
 module.exports = {
 
+  mig : {
+    'songs' : '++id',
+    'lyric_groups' : '++id, song_id',
+    'lyrics' : '++id, song_id, lyric_group_id',
+    'backdrops' : '++id',
+    'templates' : '++id',
+    'placeholders' : '++id, template_id',
+    'tracks' : '++id, song_id',
+    'arranges' : '++id, song_id',
+    'arrange_groups' : '++id, arrange_id'
+  },
+
   migrate : function(db) {
 
     // db.deleteObjectStore('songs');
