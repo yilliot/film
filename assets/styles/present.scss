@@ -7,15 +7,29 @@ body {
     font-family: 'HanziPen TC';
 }
 
-.default001 {
+.default001en {
+  font-family: 'Bradley Hand ITC';
+  padding: 1.2em;
+  color: white;
+  font-size: 0.7em;
+  text-shadow: 1px 1px 12px #000;
+}
+.default002en {
+  font-family: 'Bradley Hand ITC';
+  padding: 1.2em;
+  color: white;
+  font-size: 0.7em;
+  text-shadow: 1px 1px 12px #000;
+}
+.default001zh {
   font-family: 'FZShouJinShu-S10S';
   padding: 1.2em;
   color: white;
   font-size: 0.7em;
   text-shadow: 1px 1px 12px #000;
 }
-.default002 {
-  font-family: 'Bradley Hand ITC';
+.default002zh {
+  font-family: 'FZShouJinShu-S10S';
   padding: 1.2em;
   color: white;
   font-size: 0.7em;

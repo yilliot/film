@@ -22,6 +22,11 @@ module.exports = {
       title : 'default004',
       path : 'default004.mp4',
       type : 'video'
+    },
+    {
+      title : 'default005',
+      path : 'default005.mp4',
+      type : 'video'
     }
   ]
 };

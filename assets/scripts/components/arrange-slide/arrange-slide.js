@@ -24,9 +24,12 @@ module.exports = {
   methods : {
     scream : function() {
       this.$parent.$parent.$parent.current_slide_id = this.slide.id;
-      window.Main.backgroundPage.PresentWindow.setContent(this.slide.content1, 1);
-      window.Main.backgroundPage.PresentWindow.setBackdrop(this.backdrop);
-      console.log(this.template);
+      window.Main.backgroundPage.PresentWindow.setSlideContent(
+        this.slide.content1,
+        1,
+        this.backdrop,
+        this.template
+      );
     }
   }
 

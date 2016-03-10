@@ -3,11 +3,8 @@ var controlwin;
 var PresentWindow = {
   contentWindow : {},
   init : function() {},
-  setContent : function(text, index) {
-    this.contentWindow.Broadcast.setContent(text, index);
-  },
-  setBackdrop : function(backdrop) {
-    this.contentWindow.Broadcast.setBackdrop(backdrop);
+  setSlideContent : function(text, index, backdrop, template) {
+    this.contentWindow.Broadcast.setSlideContent(text, index, backdrop, template);
   },
   show : function(bounds) {
     this.contentWindow.Broadcast.show(bounds);
