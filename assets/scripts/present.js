@@ -2,8 +2,6 @@ var Broadcast = {
   setSlideContent : function(content, index, backdrop, template) {
     var content001 = $('#content00'+index);
 
-    console.log('speed:'+template.speed);
-
     content001.fadeOut(template.speed, function(){
       $(this).text(content).fadeIn(template.speed);
 

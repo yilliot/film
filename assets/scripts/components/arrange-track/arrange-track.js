@@ -4,9 +4,9 @@ module.exports = {
 
   data : function() {
     return {
+      'song' : {},
+      'arrange' : {},
       'groups' : [],
-      'arrange_groups' : [],
-      'title' : 'loading...'
     };
   },
 
@@ -17,13 +17,15 @@ module.exports = {
   },
 
   asyncData : function(resolve, reject) {
-    this.$parent.getTrackTitle(this.track, resolve);
-    this.$parent.getArranges(this.track, resolve);
+    this.$parent.getSong(this.track, resolve);
+    this.$parent.getArrange(this.track, resolve);
+    this.$parent.getGroups(this.track, resolve);
   },
 
   methods : {
-    getSlideDetails : function(slide, resolve) {
-      this.$parent.getSlideDetails(slide, resolve);
+
+    getSlideDetails : function(lyric, resolve) {
+      this.$parent.getSlideDetails(lyric, resolve);
     }
   },
 

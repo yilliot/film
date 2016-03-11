@@ -1,18 +1,17 @@
 <div>
   
-  <div class="ui blue segment">
-    {{title}}
+  <div class="ui inverted segment">
+    <h2 class="ui header">{{song.title}}</h2>
   </div>
 
-
-  <template v-for='group in groups'>
-    <div class="ui five link cards">
+  <div class="ui segments">
+    <template v-for='group in groups'>
       <arrange-group
         :group='group'
+        :arrange='arrange'
       ></arrange-group>
-    </div>
-  </template>
-
+    </template>
+  </div>
 </div>
 
 <div class="ui hidden divider"></div>

@@ -9,7 +9,6 @@ window.Myvue = {
       el : '#myvue',
 
       data : {
-        song_list : [1,2,3],
         db_lyrics : [],
         db_tracks : [],
         db_arrange_groups : [],
@@ -35,18 +34,13 @@ window.Myvue = {
 
         var getCb = function(name, item){
           Myvue.vueObj.$set(name, item);
-          // console.log(name);
-          // console.log(item);
         };
-        window.DB.getAllItems('db_lyrics', getCb);
         window.DB.getAllItems('db_tracks', getCb);
-        window.DB.getAllItems('db_arrange_groups', getCb);
-        window.DB.getAllItems('db_arranges', getCb);
-        window.DB.getAllItems('db_placeholders', getCb);
-        window.DB.getAllItems('db_lyric_groups', getCb);
+        // window.DB.getAllItems('db_arrange_groups', getCb);
+        // window.DB.getAllItems('db_arranges', getCb);
         window.DB.getAllItems('db_songs', getCb);
-        window.DB.getAllItems('db_templates', getCb);
-        window.DB.getAllItems('db_backdrops', getCb);
+        // window.DB.getAllItems('db_templates', getCb);
+        // window.DB.getAllItems('db_backdrops', getCb);
       },
 
       methods : {
@@ -66,69 +60,57 @@ window.Myvue = {
         },
 
         // child event
-        getSlideDetails : function(slide, resolve) {
-          window.DB.db.templates.where(':id').equals(slide.template_id)
+        getSlideDetails : function(lyric, resolve) {
+          window.DB.db.templates.where(':id').equals(lyric.template_id)
             .first()
             .then(function(item){
               resolve({
                 'template' : item
-              });              
+              });
             });
-          window.DB.db.backdrops.where(':id').equals(slide.backdrop_id)
+          window.DB.db.backdrops.where(':id').equals(lyric.backdrop_id)
             .first()
             .then(function(item){
               resolve({
                 'backdrop' : item
-              });              
+              });
             });
-
         },
 
-        getTrackTitle: function(track, resolve) {
+        getSong: function(track, resolve) {
           window.DB.db.songs.where(':id').equals(track.song_id)
             .first()
             .then(function(item){
               resolve({
-                'title' : item.title
+                'song' : item
+              });              
+            });
+        },
+        getArrange: function(track, resolve) {
+          window.DB.db.arranges.where(':id').equals(track.arrange_id)
+            .first()
+            .then(function(item){
+              resolve({
+                'arrange' : item
               });              
             });
         },
 
-        getArranges: function(track, _resolve) {
+        getGroups: function(track, resolve) {
 
           var db = window.DB.db;
 
           // get arranges
-          db.arranges.where(':id').equals(track.song_id)
+          db.arrange_groups.where(':id').equals(track.arrange_id)
             .first()
             .then(function(arrange){
               // get groups
-              var arrange_groups = db.arrange_groups.where('arrange_id').equals(arrange.id)
-                .toArray();
-
-              return arrange_groups;
-            }).then(function(arrange_groups){
-
-              _resolve({
-                arrange_groups : arrange_groups
-              });
-              var fn = function(item){
-                return db.lyric_groups.where(':id').equals(item.lyric_group_id).first();
-              };
-              var actions = arrange_groups.map(fn);
-              return Promise.all(actions)
-
-            }).then(function(lyric_groups){
-
-              var fn = function(item) {
-                return db.lyrics.where('lyric_group_id').equals(item.id).toArray();
-              }
-              var actions = lyric_groups.map(fn);
-
-              return Promise.all(actions)
-
-            }).then(function(lyrics){
-              _resolve({groups:lyrics});
+              db.arrange_groups.where('arrange_id').equals(arrange.id)
+                .toArray(function(groups){
+                  resolve({
+                    groups : groups
+                  });
+                });
             });
         }
       }
@@ -280,6 +262,15 @@ window.Main = {
     chrome.system.display.onDisplayChanged.addListener(Displays.updateList);
     window.Displays.updateList();
 
+    $(document).keydown(function(event) {
+      switch(event.which) {
+        case 37: window.Navigator.goPrevCard(); break;
+        case 38: window.Navigator.goPrevGroup(); break;
+        case 39: window.Navigator.goNextCard(); break;
+        case 40: window.Navigator.goNextGroup(); break;
+      }
+    });
+
   },
 
   semantic : function() {
@@ -287,6 +278,38 @@ window.Main = {
   }
 };
 
+window.Navigator = {
+  goNextCard : function() {
+    $currentCard = $('.card.active');
+    $nextCard = $('.card.active').next('.card');
+    if ($nextCard.length) {
+      $currentCard.removeClass('active').next('.card').addClass('active');
+    }
+  },
+  goPrevCard : function() {
+    $currentCard = $('.card.active');
+    $nextCard = $('.card.active').prev('.card');
+    if ($nextCard.length) {
+      $currentCard.removeClass('active').prev('.card').addClass('active');
+    }
+  },
+  goNextGroup : function() {
+    $currentCard = $('.card.active');
+    $nextGroup = $('.card.active').closest('.cards').next('.cards');
+    if ($nextGroup.length) {
+      $currentCard.removeClass('active');
+      $nextGroup.children('.card:first').addClass('active');
+    }
+  },
+  goPrevGroup : function() {
+    $currentCard = $('.card.active');
+    $nextGroup = $('.card.active').closest('.cards').prev('.cards');
+    if ($nextGroup.length) {
+      $currentCard.removeClass('active');
+      $nextGroup.children('.card:first').addClass('active');
+    }
+  }
+};
 
 
 $(function(){

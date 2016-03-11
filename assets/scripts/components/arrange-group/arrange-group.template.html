@@ -1,5 +1,11 @@
-<template v-for='slide in group'>
-    <arrange-slide
-    :slide='slide'
-  ></arrange-slide>
-</template>
+<div class="ui inverted tertiary segment"
+  :class='[label]'
+  >
+  <div class="ui six link cards">
+  <template v-for='lyric in group.lyrics'>
+      <arrange-slide
+        :lyric='lyric'
+      ></arrange-slide>
+  </template>
+  </div>
+</div>
