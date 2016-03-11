@@ -190,6 +190,10 @@ window.DB = {
     }
 
     this.db.version(DB_VERSION).stores(stores);
+
+    this.db.on("populate", function() {
+      DB.seed();
+    });
     this.db.open().then(callback);
 
   },
@@ -200,8 +204,6 @@ window.DB = {
 
     var seeds = [
       require('seeds/songs'),
-      require('seeds/lyric_groups'),
-      require('seeds/lyrics'),
       require('seeds/tracks'),
       require('seeds/arranges'),
       require('seeds/arrange_groups'),
