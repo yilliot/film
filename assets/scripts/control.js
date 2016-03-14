@@ -205,6 +205,13 @@ window.Displays = {
 
   objList : [],
 
+  nowShowing : {
+    content001 : '',
+    template : '',
+    backdrop : '',
+    speed : 0
+  },
+
   show : function () {
     var targetedDisplay = Displays.objList[$('#present-display-list').val()];
     Main.backgroundPage.PresentWindow.show(targetedDisplay.bounds);
@@ -212,6 +219,17 @@ window.Displays = {
 
   stop : function () {
     Main.backgroundPage.PresentWindow.hide();
+  },
+
+  updateShow : function () {
+    var nowShowing = window.Displays.nowShowing;
+    console.log(nowShowing);
+    window.Main.backgroundPage.PresentWindow.setSlideContent(
+      nowShowing.content001,
+      nowShowing.index,
+      nowShowing.backdrop,
+      nowShowing.template
+    );
   },
 
   updateList : function () {
@@ -258,7 +276,10 @@ window.Main = {
     window.Displays.updateList();
 
     $(document).keydown(function(event) {
+      console.log(event.which);
       switch(event.which) {
+        case 66: window.Navigator.blackout(); break; // b : blackout
+        case 48: window.Navigator.removeText(); break;  // 0 : remove text
         case 37: window.Navigator.goPrevCard(); break;
         case 38: window.Navigator.goPrevGroup(); break;
         case 39: window.Navigator.goNextCard(); break;
@@ -274,6 +295,15 @@ window.Main = {
 };
 
 window.Navigator = {
+  blackout : function() {
+    window.Displays.nowShowing.content001 = '';
+    window.Displays.nowShowing.backdrop = null;
+    window.Displays.updateShow();
+  },
+  removeText : function() {
+    window.Displays.nowShowing.content001 = '';
+    window.Displays.updateShow();
+  },
   goNextCard : function() {
     $currentCard = $('.card.active');
     $nextCard = $('.card.active').next('.card');

@@ -21,12 +21,13 @@ module.exports = {
     scream : function(event) {
       $('.cards .active.card').removeClass('active');
       $(event.target).closest('.card').addClass('active');
-      window.Main.backgroundPage.PresentWindow.setSlideContent(
-        this.lyric.content1,
-        1,
-        this.backdrop,
-        this.template
-      );
+      window.Displays.nowShowing = {
+        content001 : this.lyric.content1,
+        index : 1,
+        backdrop : this.backdrop,
+        template : this.template
+      };
+      window.Displays.updateShow();
     }
   },
 

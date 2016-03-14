@@ -23,6 +23,7 @@ gulp.task('static', function() {
   gulp.src('node_modules/semantic-ui/dist/themes/**/*').pipe(gulp.dest('dist/styles/themes'));
 
   gulp.src('assets/manifest.json').pipe(gulp.dest('dist'));
+  gulp.src('assets/icon128.png').pipe(gulp.dest('dist'));
   gulp.src('assets/html/*').pipe(gulp.dest('dist/html'));
 });
 

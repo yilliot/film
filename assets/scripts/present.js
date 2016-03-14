@@ -1,15 +1,26 @@
 var Broadcast = {
+
   setSlideContent : function(content, index, backdrop, template) {
+
+    var speed = template ? template.speed : 0;
+
     var content001 = $('#content00'+index);
 
-    content001.fadeOut(template.speed, function(){
-      $(this).text(content).fadeIn(template.speed);
+    content001.fadeOut(speed, function(){
 
-      content001.removeClass().addClass(template.title);
+      $(this).text(content).fadeIn(speed);
 
-      var backdropPath = '/store/loops/'+backdrop.path;
-      if ($('#backdrop').attr('src') != backdropPath) {
-        $('#backdrop').attr('src', backdropPath);
+      if (template) {
+        content001.removeClass().addClass(template.title);
+      }
+
+      if (backdrop) {
+        var backdropPath = '/store/loops/'+backdrop.path;
+        if ($('#backdrop').attr('src') != backdropPath) {
+          $('#backdrop').attr('src', backdropPath);
+        }
+      } else {
+        $('#backdrop').attr('src', '');
       }
 
     });

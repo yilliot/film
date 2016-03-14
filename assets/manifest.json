@@ -1,12 +1,15 @@
 {
-  "name": "Film",
-  "description": "Present text with backdrop video",
+  "name": "Culture Presenter",
+  "description": "Presenter for HCC",
   "permissions": ["system.cpu", "system.memory", "system.storage", "system.display"],
   "manifest_version": 2,
-  "version": "0.1",
+  "version": "0.2",
   "app": {
     "background": {
       "scripts": ["scripts/background.js"]
     }
+  },
+  "icons": {
+    "128": "icon128.png"
   }
 }

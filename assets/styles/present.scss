@@ -3,36 +3,46 @@ body {
     padding: 0;
     color: white;
     text-align: center;
-    font-size: 10em;
-    font-family: 'HanziPen TC';
+    background-color: black;
+}
+
+.content {
+  padding: 1em;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 6.5em;
+  line-height: 1.2em;
 }
 
 .default001en {
+  @extend .content;
   font-family: 'Bradley Hand ITC';
-  padding: 1.2em;
   color: white;
-  font-size: 0.7em;
   text-shadow: 1px 1px 12px #000;
 }
+
 .default002en {
+  @extend .content;
   font-family: 'Bradley Hand ITC';
-  padding: 1.2em;
   color: white;
-  font-size: 0.7em;
   text-shadow: 1px 1px 12px #000;
 }
+
 .default001zh {
+  @extend .content;
   font-family: 'FZShouJinShu-S10S';
-  padding: 1.2em;
   color: white;
-  font-size: 0.7em;
   text-shadow: 1px 1px 12px #000;
 }
+
 .default002zh {
+  @extend .content;
   font-family: 'FZShouJinShu-S10S';
-  padding: 1.2em;
   color: white;
-  font-size: 0.7em;
   text-shadow: 1px 1px 12px #000;
 }
 
