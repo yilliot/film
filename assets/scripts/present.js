@@ -8,7 +8,7 @@ var Broadcast = {
 
     content001.fadeOut(speed, function(){
 
-      $(this).text(content).fadeIn(speed);
+      $(this).html(content).fadeIn(speed);
 
       if (template) {
         content001.removeClass().addClass(template.title);
