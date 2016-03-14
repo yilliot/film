@@ -18,7 +18,6 @@ window.Myvue = {
         db_templates : [],
         db_songs : [],
         db_backdrops : [],
-        current_slide_id : 2,
         state : 'review' // layout, review, show, song
       },
 
@@ -36,11 +35,7 @@ window.Myvue = {
           Myvue.vueObj.$set(name, item);
         };
         window.DB.getAllItems('db_tracks', getCb);
-        // window.DB.getAllItems('db_arrange_groups', getCb);
-        // window.DB.getAllItems('db_arranges', getCb);
         window.DB.getAllItems('db_songs', getCb);
-        // window.DB.getAllItems('db_templates', getCb);
-        // window.DB.getAllItems('db_backdrops', getCb);
       },
 
       methods : {

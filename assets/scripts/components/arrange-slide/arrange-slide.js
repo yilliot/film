@@ -7,6 +7,7 @@ module.exports = {
       template : {},
       backdrop : {},
       is_current_slide : false,
+      root : null
     };
   },
 
@@ -17,8 +18,9 @@ module.exports = {
   },
 
   methods : {
-    scream : function() {
-      this.$parent.$parent.$parent.current_slide_id = this.lyric.id;
+    scream : function(event) {
+      $('.cards .active.card').removeClass('active');
+      $(event.target).closest('.card').addClass('active');
       window.Main.backgroundPage.PresentWindow.setSlideContent(
         this.lyric.content1,
         1,
@@ -26,6 +28,9 @@ module.exports = {
         this.template
       );
     }
+  },
+
+  ready : function() {
   }
 
 };
