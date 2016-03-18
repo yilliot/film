@@ -12,7 +12,7 @@ module.exports = {
       title : "Where You Are",
       preview : "生命 忐忑不安... I'm lifting you higher, higher... 我从未经历过你这种爱... 这一路走过来 你在我身边..."
     }, {
-      title : "Rivel Wild",
+      title : "River Wild",
       preview : "从天而来的神迹... 主圣灵大雨 如洪水降临... Oh Holy Spirit... 生命活水 如巨浪翻腾..."
     }
   ]

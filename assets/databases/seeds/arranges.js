@@ -13,7 +13,7 @@ module.exports = {
       title : "Where You Are",
     }, {
       song_id : 4,
-      title : "Rivel Wild",
+      title : "River Wild",
     }
   ]
 };
