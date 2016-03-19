@@ -5,7 +5,7 @@ module.exports = {
   data : [
     { // 1
       title : 'default001',
-      path : '1.mp4',
+      path : '000.mp4',
       type : 'video'
     },
     { // 2
