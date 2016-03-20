@@ -6,6 +6,18 @@ body {
     background-color: black;
 }
 
+@font-face {
+  font-family: 'HarvestCultureMediaFont';
+  src: local('FZShouJinShu-S10S');
+  unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+  font-family: 'HarvestCultureMediaFont';
+  src: local('Bradley Hand ITC');
+}
+
+
 .content {
   padding: 1em;
   position: absolute;
@@ -20,28 +32,28 @@ body {
 
 .default001en {
   @extend .content;
-  font-family: 'Bradley Hand ITC';
+  font-family: 'HarvestCultureMediaFont';
   color: white;
   text-shadow: 1px 1px 12px #000, 1px 1px 36px #000;
 }
 
 .default002en {
   @extend .content;
-  font-family: 'Bradley Hand ITC';
+  font-family: 'HarvestCultureMediaFont';
   color: white;
   text-shadow: 1px 1px 12px #000, 1px 1px 36px #000;
 }
 
 .default001zh {
   @extend .content;
-  font-family: 'FZShouJinShu-S10S';
+  font-family: 'HarvestCultureMediaFont';
   color: white;
   text-shadow: 1px 1px 12px #000, 1px 1px 36px #000;
 }
 
 .default002zh {
   @extend .content;
-  font-family: 'FZShouJinShu-S10S';
+  font-family: 'HarvestCultureMediaFont';
   color: white;
   text-shadow: 1px 1px 12px #000, 1px 1px 24px #000;
 }
