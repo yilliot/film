@@ -3,7 +3,6 @@ module.exports = {
   store : 'arrange_groups',
 
   data : [
-
     // ocean
     {
       arrange_id : 1,
@@ -19,15 +18,218 @@ module.exports = {
           content1: '',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
+        {
+          order: 1,
+          content1: '祢呼唤我离开这水面',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 2,
+          content1: '跨入未知 坠落迷失',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 3,
+          content1: '直到在奥秘里寻见祢',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 4,
+          content1: '在深海里 我仍站立',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        }
+      ]
+    },
+    {
+      arrange_id : 1,
+      order : 1,
+      label : "Pre Chorus 1",
+      type : "pre_chorus",
+      song_id : 1,
+      lyrics : [
+        // Ocean : Pre Chorus 1
+        {
+          order: 0,
+          content1: '而 我全心呼求祢名',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 1,
+          content1: '让我眼在海浪之上',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 2,
+          content1: '当海翻腾',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 3,
+          content1: '我灵安息 在祢怀里',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 4,
+          content1: '因我属祢 而祢属我',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        }
+      ]
+    },
+    {
+      arrange_id : 1,
+      order : 2,
+      label : "Verse 2",
+      type : "verse",
+      song_id : 1,
+      lyrics : [
+        // Ocean : Verse 2
+        {
+          order: 0,
+          content1: '祢恩典涌流在水深处',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 1,
+          content1: '祢手掌权 引导着我',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 2,
+          content1: '当我软弱 恐惧围绕我',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 3,
+          content1: '祢不失败 祢永不停息',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        }
+      ]
+    },
+    {
+      arrange_id : 1,
+      order : 3,
+      label : "Chorus 1",
+      type : "chorus",
+      song_id : 1,
+      lyrics : [
+        // Ocean : Chorus 1
+        {
+          order: 0,
+          content1: '圣灵引导<br>使我信心沒有界限',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 1,
+          content1: '让我能行在水面上',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 2,
+          content1: '无论哪祢呼唤我',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 3,
+          content1: '带领我更深<br>超越我脚踏之地',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 4,
+          content1: '而我信 会使我刚强',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+        {
+          order: 5,
+          content1: '在我救主的同在里',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        }
+      ]
+    },
+    // ocean
+    {
+      arrange_id : 1,
+      order : 0,
+      label : "Verse 1",
+      type : "verse",
+      song_id : 1,
+
+      lyrics : [
+        // Ocean : Verse
+        {
+          order: 0,
+          content1: '',
+          content2: '',
+          hotkey: '',
+          backdrop_id: 2,
+          template_id: 2
+        },
+
         {
           order: 1,
           content1: 'You call me out upon the waters',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -35,7 +237,7 @@ module.exports = {
           content1: 'The great unknown where feet may fail',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -43,7 +245,7 @@ module.exports = {
           content1: 'And there I find You in the mystery',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -51,7 +253,7 @@ module.exports = {
           content1: 'In oceans deep',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -59,7 +261,7 @@ module.exports = {
           content1: 'My faith will stand',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         }
       ]
@@ -77,7 +279,7 @@ module.exports = {
           content1: 'And I will call upon Your name',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -85,7 +287,7 @@ module.exports = {
           content1: 'And keep my eyes above the waves',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -93,7 +295,7 @@ module.exports = {
           content1: 'When oceans rise',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -101,7 +303,7 @@ module.exports = {
           content1: 'My soul will rest in Your embrace',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -109,7 +311,7 @@ module.exports = {
           content1: 'For I am Yours and You are mine',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         }
       ]
@@ -127,7 +329,7 @@ module.exports = {
           content1: 'Your grace abounds in deepest waters',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -135,7 +337,7 @@ module.exports = {
           content1: 'Your sovereign hand',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -143,7 +345,7 @@ module.exports = {
           content1: 'Will be my guide',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -151,7 +353,7 @@ module.exports = {
           content1: 'Where feet may fail and fear surrounds me',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -159,7 +361,7 @@ module.exports = {
           content1: 'You\'ve never failed and You won\'t start now',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         }
       ]
@@ -177,7 +379,7 @@ module.exports = {
           content1: 'Spirit lead me<br>where my trust is without borders',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -185,7 +387,7 @@ module.exports = {
           content1: 'Let me walk upon the waters',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -193,7 +395,7 @@ module.exports = {
           content1: 'Wherever You would call me',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -201,7 +403,7 @@ module.exports = {
           content1: 'Take me deeper<br>than my feet could ever wander',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -209,7 +411,7 @@ module.exports = {
           content1: 'And my faith will be made stronger',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         },
         {
@@ -217,7 +419,7 @@ module.exports = {
           content1: 'In the presence of my Savior',
           content2: '',
           hotkey: '',
-          backdrop_id: 1,
+          backdrop_id: 2,
           template_id: 2
         }
       ]

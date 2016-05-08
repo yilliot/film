@@ -18,7 +18,12 @@
 
 ### Features
 
-#### Lyric JSON format
+
+verse : 1,2,3; chorus : 4 5; bridge : 6 7; standby :8, 9
+remove text : 0
+black screen : b
+
+remark at end of lyric_group
 
 
 

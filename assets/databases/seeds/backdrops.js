@@ -10,7 +10,7 @@ module.exports = {
     },
     { // 2
       title : 'default002',
-      path : '2.mp4',
+      path : '600.mp4',
       type : 'video'
     },
     { // 3
